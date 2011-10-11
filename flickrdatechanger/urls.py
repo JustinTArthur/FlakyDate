@@ -5,10 +5,9 @@ from django.views.generic.base import TemplateView
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('flickrdatechanger',
     # Examples:
-    url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
-    url(r'^changr/', include('FlakyDate.flickrdatechanger.urls')),
+    url(r'^$', 'home', name='home'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
