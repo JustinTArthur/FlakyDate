@@ -1,1 +1,4 @@
 env
+.Python
+*.py[oc]
+/local_settings.py
