@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic.base import TemplateView
+#from django.views.generic.base import TemplateView
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -7,8 +7,8 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^$', TemplateView.as_view(template_name="index.html"), name='home'),
-    url(r'^changr/', include('FlakyDate.flickrdatechanger.urls')),
+    url(r'^', include('FlakyDate.flickrdatechanger.urls')),
+    # url(r'^changr/', include('FlakyDate.flickrdatechanger.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
