@@ -1,0 +1,4 @@
+{% extends "flickrdatechanger/base.html" %}
+{% block content %}
+<form action="{% url flickrdatechanger.views.home %}" method="post">{{ form }}</form>
+{% endblock %}

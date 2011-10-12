@@ -1,6 +1,7 @@
 from flickrdatechanger.forms import DateAdjustmentForm
 from flickrdatechanger.decorators import require_flickr_auth
 from flickrdatechanger.shifting import set_new_date, shift_date
+from django.shortcuts import redirect, render_to_response
 
 @require_flickr_auth
 def home(request, flickr):
@@ -20,8 +21,10 @@ def home(request, flickr):
                     if form.cleaned_data['shift_direction'] == "-":
                         years_shift = 0 - years_shift
                         days_shift = 0 - days_shift
-                    shift_date(flickr, photo.get('id'), years_shift, days_shift)
+                    shift_date(flickr, photo, years_shift, days_shift)
             else:
                 #Just setting a new date.
                 for photo in photos:
-                    set_new_date(flickr, photo.get('id'), form.cleaned_data['new_date'])
+                    set_new_date(flickr, photo, form.cleaned_data['new_date'])
+            return redirect("home")
+    return render_to_response("flickrdatechanger/home.html", {'form' : form})
