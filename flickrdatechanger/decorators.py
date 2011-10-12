@@ -42,7 +42,7 @@ def require_flickr_auth(view):
         # If the token is valid, we can call the decorated view.
         log.info('Token is valid')
 
-        return view(request, *args, **kwargs)
+        return view(request, f, *args, **kwargs)
 
     return protected_view
 
