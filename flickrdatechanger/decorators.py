@@ -36,7 +36,7 @@ def require_flickr_auth(view):
         if not token:
             # No valid token, so redirect to Flickr
             log.info('Redirecting user to Flickr to get frob')
-            url = f.web_login_url(perms='read')
+            url = f.web_login_url(perms='write')
             return HttpResponseRedirect(url)
 
         # If the token is valid, we can call the decorated view.
@@ -45,15 +45,3 @@ def require_flickr_auth(view):
         return view(request, f, *args, **kwargs)
 
     return protected_view
-
-def callback(request):
-    log.info('We got a callback from Flickr, store the token')
-
-    f = flickrapi.FlickrAPI(settings.FLICKR_API_KEY,
-                            settings.FLICKR_API_SECRET, store_token=False)
-
-    frob = request.GET['frob']
-    token = f.get_token(frob)
-    request.session['token'] = token
-
-    return HttpResponseRedirect('/content')
