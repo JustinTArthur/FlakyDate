@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('flickrdatechanger',
+urlpatterns = patterns('flickrdatechanger.views',
     # Examples:
     url(r'^$', 'home', name='home'),
 
