@@ -1,8 +1,8 @@
 from datetime import timedelta, datetime, date
 
 def set_new_date(flickr, photo, new_date, new_time):
-    old_datetime = photo.get('date_upload',photo.find('dates').attrib('posted'))
-    old_datetime = datetime.fromtimestamp(old_datetime)
+    old_datetime = photo.get('dateupload',None) or photo.find('dates').attrib('posted')
+    old_datetime = datetime.fromtimestamp(float(old_datetime))
     new_datetime = datetime.combine(new_date or old_datetime.date(), new_time or old_datetime.time())
     flickr.photos_setDates(photo_id=photo.get('id'), date_posted=new_datetime)
     return (photo.get('id'), old_datetime, new_datetime)

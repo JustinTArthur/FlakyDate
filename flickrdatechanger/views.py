@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.contrib import messages
 from django.shortcuts import redirect, render_to_response
 from django.template.context import RequestContext
