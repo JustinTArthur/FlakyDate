@@ -9,7 +9,7 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|safe }}</li>
     {% endfor %}
 </ul>
 {% endif %}
@@ -22,6 +22,7 @@
 <fieldset id="date_form_fields">
 	<p><label for="{{ form.new_date.id_for_label }}">{{ form.new_date.label }}:</label> {{ form.new_date }}</p>
 	<p><label for="{{ form.new_time.id_for_label }}">{{ form.new_time.label }}:</label> {{ form.new_time }}</p>
+	<p class="helptext">If a new date or time is not specified, the original value from the photograph will be used.</p>
 </fieldset>
 <fieldset id="shift_form_fields">Shift {{ form.shift_years }} years, plus {{ form.shift_days }} days {{ form.shift_direction }}.</fieldset>
 <input type="submit" value="Update Photos"/>
