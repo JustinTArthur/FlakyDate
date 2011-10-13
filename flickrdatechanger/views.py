@@ -26,8 +26,8 @@ def home(request, flickr):
                     years_shift = form.cleaned_data['shift_years']
                     days_shift = form.cleaned_data['shift_days']
                     if form.cleaned_data['shift_direction'] == "-":
-                        years_shift = 0 - years_shift
-                        days_shift = 0 - days_shift
+                        years_shift = 0 - years_shift if years_shift is not None else None
+                        days_shift = 0 - days_shift if days_shift is not None else None
                     change = shift_date(flickr, photo, years_shift, days_shift)
                     changed_photos.append(change)
             else:

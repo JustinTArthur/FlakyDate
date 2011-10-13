@@ -11,6 +11,8 @@ def set_new_date(flickr, photo, new_date, new_time):
 
 def shift_date(flickr, photo, year_shift, days_shift):
     current_datetime = photo.get('dateupload',None) or photo.find('dates').attrib('posted')
+    current_datetime = datetime.fromtimestamp(float(current_datetime))
     new_date = date(current_datetime.year + year_shift, current_datetime.month, current_datetime.day)
-    new_date = new_date + timedelta(days=days_shift)
+    if days_shift is not None:
+        new_date = new_date + timedelta(days=days_shift)
     return set_new_date(flickr, photo, new_date, current_datetime.time())
