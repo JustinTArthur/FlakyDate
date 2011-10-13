@@ -1,7 +1,9 @@
 from datetime import timedelta, datetime, date
 
 def set_new_date(flickr, photo, new_datetime):
+    old_datetime = photo.get('date_upload',photo.find('dates').attrib('posted'))
     flickr.photos_setDates(photo_id=photo.get('id'), date_posted=new_datetime)
+    return (photo.get('id'), old_datetime, new_datetime)
 
 def shift_date(flickr, photo, year_shift, days_shift):
     current_datetime = photo.get('date_upload',photo.find('dates').attrib('posted'))
@@ -9,4 +11,4 @@ def shift_date(flickr, photo, year_shift, days_shift):
     new_datetime = datetime.combine(new_date, current_datetime.time())
     new_datetime = new_datetime + timedelta(days=days_shift)
     
-    set_new_date(flickr, photo, new_datetime)
+    return set_new_date(flickr, photo, new_datetime)

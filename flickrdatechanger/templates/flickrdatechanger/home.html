@@ -1,5 +1,12 @@
 {% extends "flickrdatechanger/base.html" %}
 {% block content %}
 <div id="instructions">Paste in the id of a photo or set and select how you want to change the date.</div>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <form action="{% url flickrdatechanger.views.home %}" method="post">{{ form.as_p }}</form>
 {% endblock %}

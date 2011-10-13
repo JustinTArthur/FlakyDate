@@ -1,7 +1,9 @@
+from django.contrib import messages
+from django.shortcuts import redirect, render_to_response
+
 from flickrdatechanger.forms import DateAdjustmentForm
 from flickrdatechanger.decorators import require_flickr_auth
 from flickrdatechanger.shifting import set_new_date, shift_date
-from django.shortcuts import redirect, render_to_response
 
 import logging
 from django.template.context import RequestContext
@@ -18,6 +20,7 @@ def home(request, flickr):
                 photos = flickr.walk_set(form.cleaned_data['item_id'], extras="date_upload")
             else:
                 photos = (flickr.photos_getInfo(photo_id=form.cleaned_data['item_id']),)
+            changed_photos = []
             if form.cleaned_data['use_shift']:
                 for photo in photos:
                     years_shift = form.cleaned_data['shift_years']
@@ -25,11 +28,19 @@ def home(request, flickr):
                     if form.cleaned_data['shift_direction'] == "-":
                         years_shift = 0 - years_shift
                         days_shift = 0 - days_shift
-                    shift_date(flickr, photo, years_shift, days_shift)
+                    change = shift_date(flickr, photo, years_shift, days_shift)
+                    changed_photos.append(change)
             else:
                 #Just setting a new date.
                 for photo in photos:
-                    set_new_date(flickr, photo, form.cleaned_data['new_date'])
+                    change = set_new_date(flickr, photo, form.cleaned_data['new_date'])
+                    changed_photos.append(change)
+            message = """Successfully updated the following photos:
+<table>
+ <thead><tr><td>Photo ID</td><td>Old Date</td><td>New Date</td></tr></thead>
+ <tbody>%s</tbody>
+</table>""" % (["<tr><td>%s</td><td>%s</td><td>%s</td></tr>" % entry for entry in changed_photos],)
+            messages.success(request, message)
             return redirect('home')
     return render_to_response("flickrdatechanger/home.html", {'form' : form}, RequestContext(request))
 
