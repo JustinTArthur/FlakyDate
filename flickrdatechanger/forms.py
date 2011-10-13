@@ -22,7 +22,7 @@ class DateAdjustmentForm(forms.Form):
     item_id = forms.CharField()
     new_date = forms.DateField(required=False)
     new_time = forms.TimeField(label="New time (24hr)", required=False)
-    use_shift = forms.BooleanField(label="Shift by a certain amount of years and days (instead of setting a hard date).", initial=False)
+    use_shift = forms.BooleanField(label="Shift by a certain amount of years and days (instead of setting a hard date).", initial=False, required=False)
     shift_direction = forms.ChoiceField(choices=(("-","backward"),('+',"forward")), initial="-")
     shift_years = NumberField(required=False, min_value=0)
     shift_days = NumberField(required=False, min_value=0)
