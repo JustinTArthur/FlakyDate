@@ -1,4 +1,9 @@
 {% extends "flickrdatechanger/base.html" %}
+
+{% block extrahead %}
+<script type="text/javascript" src="{{ MEDIA_URL }}/form_setup.js"></script>
+{% endblock %}
+
 {% block content %}
 <div id="instructions">Paste in the id of a photo or set and select how you want to change the date.</div>
 {% if messages %}
@@ -8,5 +13,16 @@
     {% endfor %}
 </ul>
 {% endif %}
-<form action="{% url flickrdatechanger.views.home %}" method="post">{{ form.as_p }}</form>
+<form action="{% url flickrdatechanger.views.home %}" method="post">
+<fieldset id="photo_and_approach_selection">
+	<p>{{ form.set_or_photo }} id: {{ form.item_id }}</p>
+	<p>{{ form.use_shift }}<label for="{{ form.use_shift.id_for_label }}">{{ form.use_shift.label }}</label></p>
+</fieldset>
+<fieldset id="date_form_fields">
+	<p><label for="{{ form.new_date.id_for_label }}">{{ form.new_date.label }}:</label> {{ form.new_date }}</p>
+	<p><label for="{{ form.new_time.id_for_label }}">{{ form.new_time.label }}:</label> {{ form.new_time }}</p>
+</fieldset>
+<fieldset id="shift_form_fields">Shift {{ form.shift_years }} years, plus {{ form.shift_days }} days {{ form.shift_direction }}.</fieldset>
+<input type="submit" value="Update Photos"/>
+</form>
 {% endblock %}

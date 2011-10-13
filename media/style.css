@@ -9,3 +9,7 @@ h1 .firsthalf {
 h1 .secondhalf {
 	color: #FF0084;
 }
+
+fieldset {
+	border: 0px;
+}
