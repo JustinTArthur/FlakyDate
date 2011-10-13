@@ -13,7 +13,8 @@
     {% endfor %}
 </ul>
 {% endif %}
-<form action="{% url flickrdatechanger.views.home %}" method="post">
+{{ form.errors }}
+<form action="{% url flickrdatechanger.views.home %}" method="post">{% csrf_token %}
 <fieldset id="photo_and_approach_selection">
 	<p>{{ form.set_or_photo }} id: {{ form.item_id }}</p>
 	<p>{{ form.use_shift }}<label for="{{ form.use_shift.id_for_label }}">{{ form.use_shift.label }}</label></p>
