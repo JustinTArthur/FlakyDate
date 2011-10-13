@@ -1,0 +1,22 @@
+FlakyDate is a Django webapp that enables users to adjust the "Upload Date" of photos or sets of photos
+in Flickr. Because a user's Photostream is presented in order of upload, this allows a user to organize
+their Photostream in the way they see fit. For example, if the beautiful panorama landscape you spent
+hours processing, stitching, and HDRing gets drowned out by the "Uncle Billy's Drunken Birthday Fiesta"
+set and this makes you sad, use FlakyDate to set Uncle Billy a couple years outside of your Photostream's
+page 1.
+
+1. Create a Python environment for this app and Django. If you have virtualenv, just run the following
+	in this directory:
+virtualenv --no-site-packages --distribute env
+(The env directory is ignored in this git repo)
+
+2. Install the Python dependencies into this environment. This project's dependencies are 
+	listed in requirements.txt. If your environment is a virtualenv, make sure you've
+	activated the virtual environment before installing the dependencies. If you have pip,
+	the dependencies are easily installed:
+source env/bin/activate #if using a virtualenv
+pip install -r requirements.txt
+	
+3. Create a local_settings.py module and fill in the FLICKR_API_KEY and FLICKR_API_SECRET settings.
+
+4. Connect up to a web container like Apache httpd and you're set. 
