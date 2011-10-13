@@ -1,4 +1,5 @@
 {% extends "flickrdatechanger/base.html" %}
 {% block content %}
-<form action="{% url flickrdatechanger.views.home %}" method="post">{{ form }}</form>
+<div id="instructions">Paste in the id of a photo or set and select how you want to change the date.</div>
+<form action="{% url flickrdatechanger.views.home %}" method="post">{{ form.as_p }}</form>
 {% endblock %}

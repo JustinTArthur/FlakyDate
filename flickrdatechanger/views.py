@@ -4,6 +4,7 @@ from flickrdatechanger.shifting import set_new_date, shift_date
 from django.shortcuts import redirect, render_to_response
 
 import logging
+from django.template.context import RequestContext
 log = logging.getLogger(__name__)
 
 @require_flickr_auth
@@ -30,7 +31,7 @@ def home(request, flickr):
                 for photo in photos:
                     set_new_date(flickr, photo, form.cleaned_data['new_date'])
             return redirect('home')
-    return render_to_response("flickrdatechanger/home.html", {'form' : form})
+    return render_to_response("flickrdatechanger/home.html", {'form' : form}, RequestContext(request))
 
 def flickr_authenticate(request):
     from django.conf import settings

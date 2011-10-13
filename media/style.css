@@ -1,0 +1,11 @@
+body {
+	font-family: sans-serif;
+}
+
+h1 .firsthalf {
+	color: #0063DC;
+}
+
+h1 .secondhalf {
+	color: #FF0084;
+}
