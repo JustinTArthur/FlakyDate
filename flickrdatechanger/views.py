@@ -1,12 +1,14 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.shortcuts import redirect, render_to_response
+from django.template.context import RequestContext
 
 from flickrdatechanger.forms import DateAdjustmentForm
 from flickrdatechanger.decorators import require_flickr_auth
 from flickrdatechanger.shifting import set_new_date, shift_date
 
 import logging
-from django.template.context import RequestContext
 log = logging.getLogger(__name__)
 
 @require_flickr_auth
@@ -33,7 +35,7 @@ def home(request, flickr):
             else:
                 #Just setting a new date.
                 for photo in photos:
-                    change = set_new_date(flickr, photo, form.cleaned_data['new_date'])
+                    change = set_new_date(flickr, photo, form.cleaned_data['new_date'], form.cleaned_data['new_time'])
                     changed_photos.append(change)
             message = """Successfully updated the following photos:
 <table>
