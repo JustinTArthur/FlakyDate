@@ -13,3 +13,13 @@ h1 .secondhalf {
 fieldset {
 	border: 0px;
 }
+
+#account_controls {
+	float: right;
+}
+
+#footer {
+	margin-top: 2em;
+	font-size: smaller;
+	color: gray;
+}

@@ -11,9 +11,12 @@
 </head>
 <body>
 <div id="page">
-	<div id="header"><h1><span class="firsthalf">Flaky</span><span class="secondhalf">Date</span></h1></div>
-	{% if session.token %}<div id="account_controls"><a href="{% url flickrdatechanger.views.flickr_logout %}">Log Out</a></div>{% endif %}
+	<div id="header">
+		{% if request.session.token %}<div id="account_controls"><a href="{% url flickrdatechanger.views.flickr_logout %}">Log Out</a></div>{% endif %}
+		<h1><span class="firsthalf">Flaky</span><span class="secondhalf">Date</span></h1>
+	</div>
 	{% block content %}{% endblock %}
+	<div id="footer">&copy;{% now "Y" %} <a href="http://justinarthur.com/">Justin Turner Arthur</a> | <a href="https://github.com/JustinTArthur/FlakyDate/issues/new">Report an Issue</a></div>
 </div>
 </body>
 </html>
