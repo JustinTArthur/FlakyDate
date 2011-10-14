@@ -8,7 +8,7 @@ from django.conf.urls.defaults import patterns, include, url
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^', include('FlakyDate.flickrdatechanger.urls')),
+    url(r'^', include('flickrdatechanger.urls')),
     # url(r'^changr/', include('FlakyDate.flickrdatechanger.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
