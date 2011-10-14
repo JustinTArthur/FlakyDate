@@ -17,6 +17,7 @@ virtualenv --no-site-packages --distribute env
 source env/bin/activate #if using a virtualenv
 pip install -r requirements.txt
 	
-3. Create a local_settings.py module and fill in the FLICKR_API_KEY and FLICKR_API_SECRET settings.
+3. Create a local_settings.py module and fill in the FLICKR_API_KEY and FLICKR_API_SECRET settings as
+well as a CACHE if you don't wish to use the default local memcached setting.
 
 4. Connect up to a web container like Apache httpd and you're set. 
