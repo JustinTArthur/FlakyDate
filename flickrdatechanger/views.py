@@ -19,7 +19,7 @@ def home(request, flickr):
             if form.cleaned_data['set_or_photo'] == "set":
                 photos = flickr.walk_set(form.cleaned_data['item_id'], extras="date_upload")
             else:
-                photos = (flickr.photos_getInfo(photo_id=form.cleaned_data['item_id']),)
+                photos = (flickr.photos_getInfo(photo_id=form.cleaned_data['item_id']).find('photo'),)
             changed_photos = []
             if form.cleaned_data['use_shift']:
                 for photo in photos:
