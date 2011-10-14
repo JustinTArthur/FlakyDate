@@ -57,3 +57,8 @@ def flickr_authenticate(request):
     request.session['token'] = token
 
     return redirect('home')
+
+def flickr_logout(request):
+    if 'token' in request.session:
+        del request.session['token']
+    return redirect('home')

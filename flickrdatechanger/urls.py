@@ -7,4 +7,5 @@ from django.conf.urls.defaults import patterns, url
 urlpatterns = patterns('flickrdatechanger.views',
     url(r'^$', 'home', name='home'),
     url(r'^flickr_auth/$', 'flickr_authenticate', name='flickr_authenticate'),
+    url(r'^logout/$','flickr_logout', name="flickr_logout")
 )

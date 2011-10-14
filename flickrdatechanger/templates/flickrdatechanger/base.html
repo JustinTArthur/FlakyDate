@@ -12,6 +12,7 @@
 <body>
 <div id="page">
 	<div id="header"><h1><span class="firsthalf">Flaky</span><span class="secondhalf">Date</span></h1></div>
+	{% if session.token %}<div id="account_controls"><a href="{% url flickrdatechanger.views.flickr_logout %}">Log Out</a></div>{% endif %}
 	{% block content %}{% endblock %}
 </div>
 </body>
