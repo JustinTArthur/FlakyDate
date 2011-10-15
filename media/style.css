@@ -27,3 +27,8 @@ fieldset {
 	font-size: smaller;
 	color: gray;
 }
+
+.reference {
+	font-style: italic;
+	font-size: smaller;
+}
